@@ -1,0 +1,200 @@
+%===========================================================
+%== Präambel ===============================================
+%===========================================================
+\documentclass[
+    paper=a4,
+    bibtotocnumbered,
+    liststotocnumbered,
+    oneside,
+    12pt,
+    listof=totoc,
+    toc=chapterentrywithdots,
+    listof=entryprefix,
+]{scrreprt}
+
+\usepackage[a4paper, left=2.5cm, right=2.5cm, top=1.25cm, bottom=1.25cm, includehead, includefoot]{geometry}
+
+
+\usepackage{float}
+\usepackage[T1]{fontenc}%Encoding
+\usepackage[german]{babel}%German-specific commmands
+%\usepackage[utf8]{inputenc} %Wird nicht benötigt bei XeLatex
+\usepackage{fancyhdr}%% Kopfzeile u. Fußzeile
+\usepackage{fontspec}%% Schriftart
+\usepackage[onehalfspacing]{setspace}%-- Zeilenabstand 1,5
+\usepackage[toc, nopostdot, acronyms]{glossaries}%% Glossar
+\usepackage[intoc]{nomencl}%% Symbolverzeichnis
+\usepackage{etoolbox}%Sorgt dafür, das Symbolverzeichnis im Header steht
+%\usepackage{listings}
+\usepackage[]{minted}
+\usepackage[titles]{tocloft}
+\usepackage{scrhack}
+\usepackage{colortbl}%Einfärben von Tabellen-Zellen, Zeilen, Spalten
+\usepackage[]{layout}
+\usepackage[]{blindtext}
+%\usepackage{showframe}% zum Anzeigen des Seitenlayouts
+\usepackage[figurename={Abb.},tablename={Tab.}]{caption}%Anpassung der Namen für Abbildung und Tabelle
+\usepackage[]{url}
+\usepackage[]{hyperref}
+\usepackage{chngcntr}%% Nummerierung der Abbildungen und Tabellen fortlaufend %%%%%%
+\usepackage{tocbibind}
+
+% Paragraph styles
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{6pt}
+
+%% Kopfzeile u. Fußzeile
+\pagestyle{fancy}
+\fancyfoot{}
+\fancyfoot[R]{\thepage}
+\fancyhead{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancypagestyle{plain}{\pagestyle{fancy}}
+
+
+%-- Standardschriftart auf Times New Roman umstellen
+\setmainfont[ Path = Fonts/,
+BoldFont=timesbd.ttf,
+ItalicFont=timesi.ttf,
+BoldItalicFont=timesbi.ttf
+]{times.ttf}
+
+%-- Kapitelüberschriften auf Standardschriftart(Times New Roman) umstellen
+\setkomafont{disposition}{\normalcolor\bfseries}
+
+% Entfernt "Kapitel X" aus der Kopfzeile vor der Kapitelüberschrift
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}
+ 
+%Abstände nach Kapiteln 
+\RedeclareSectionCommand[%
+  beforeskip=0pt,
+  afterskip=1\baselineskip plus .1\baselineskip minus .167\baselineskip
+]{chapter}
+
+%% Nummerierung der Abbildungen und Tabellen fortlaufend %%%%%%
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+
+%% Rahmen in Textbreite um Bilder
+\floatstyle{boxed}
+\restylefloat{figure}
+\restylefloat{table}
+\restylefloat{listing}
+
+%% Captions linksbündig orientieren
+\captionsetup{justification=raggedright,singlelinecheck=false}
+
+% Einbinden von Glossar u. Abkürzungsverzeichnis
+\input{Verzeichnisse/Glossar.tex}
+\input{Verzeichnisse/Abkürzungsverzeichnis.tex}
+\makeglossaries
+
+\begin{document}
+
+%===========================================================
+%== Titelseite =============================================
+%===========================================================
+\input{Titelseite.tex}
+    
+%===========================================================
+%== Inhaltsverzeichnis =====================================
+%===========================================================   
+\begin{singlespace}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} % Punkte im Inhaltsverzeichnis bei Kapiteln
+\tableofcontents
+\end{singlespace}
+
+% %===========================================================
+% %== Abbildungsverzeichnis ==================================
+% %===========================================================
+% \newpage
+% \renewcommand{\cftfigpresnum}{Abb. }
+% \renewcommand{\cftfigaftersnum}{:}
+% \setlength{\cftfignumwidth}{2cm}
+% \setlength{\cftfigindent}{0cm}
+% \listoffigures
+
+% %===========================================================
+% %== Tabellenverzeichnis ====================================
+% %===========================================================
+% \newpage
+% \renewcommand{\cfttabpresnum}{Tab. }
+% \renewcommand{\cfttabaftersnum}{:}
+% \setlength{\cfttabnumwidth}{2cm}
+% \setlength{\cfttabindent}{0cm}
+% \listoftables
+
+% %===========================================================
+% %== Codeverzeichnis ========================================
+% %===========================================================
+% \newpage
+% \renewcommand\listingscaption{Code}
+% \renewcommand\listoflistingscaption{Codebeispielverzeichnis}
+% \renewcommand{\cftfigpresnum}{Code }
+% \listoflistings
+% \addcontentsline{toc}{chapter}{Codebeispielverzeichnis}
+
+% %===========================================================
+% %== Symbolverzeichnis ======================================
+% %===========================================================
+% \newpage
+% %% Symbolverzeichnis
+% \makenomenclature
+% % This will add the units
+% %----------------------------------------------
+% \newcommand{\nomunit}[1]{%
+% \renewcommand{\nomentryend}{\hspace*{\fill}#1}}
+% %----------------------------------------------
+% \renewcommand{\nomname}{Symbolverzeichnis}
+% %Sorgt dafür, das Symbolverzeichnis im Header steht
+% \patchcmd{\thenomenclature}
+%   {\chapter*{\nomname}}% usually only \chapter*{\nomname} is issued
+%   {\chapter*{\nomname}\markboth{\MakeUppercase\nomname}{\MakeUppercase\nomname}}
+%   {}{}
+% \input{Verzeichnisse/Symbolverzeichnis.tex}
+% \printnomenclature
+
+
+% %===========================================================
+% %== Abkürzungsverzeichnis ==================================
+% %===========================================================
+% \newpage
+% \printglossary[type=\acronymtype, title=Abkürzungsverzeichnis, toctitle=Abkürzungsverzeichnis]
+%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+% Text Einleitung, Hauptteil usw. 
+%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+\chapter{Motivation und Problemstellung}
+\blindtext
+
+\chapter{Forschungsfrage}
+\blindtext
+
+
+%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+% Text Einleitung, Hauptteil usw. 
+%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+% %===========================================================
+% %== Glossar ================================================
+% %===========================================================
+% %% Glossar
+% \renewcommand*{\glossaryentrynumbers}[1]{} %Entfernt die Seitenzahl am Ende der Glossar-Beschreibung
+
+% \printglossary[title=Glossar,toctitle=Glossar]
+
+%===========================================================
+%== Literaturverzeichnis ===================================
+%===========================================================
+% \bibliography{Literatur/literatur}
+% \bibliographystyle{alphadin}
+
+%===========================================================
+%== Anhang =================================================
+%===========================================================
+% \appendix
+% \chapter{Anhang}
+% \newpage
+% \section{Ehrenwörtliche Erklärung}
+% \input{Anhang/EhrenwörtlicheErklärung.tex}
+
+\end{document}
