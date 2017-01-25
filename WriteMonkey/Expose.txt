@@ -1,0 +1,73 @@
+﻿#Ausgangssituation u. Problemstellung
+Neben den etablierten Programmiersprachen wie Java, C++/C werden kontinuirlich neue Programmiersprchen entwickelt. 
+//Diese neuen Programmiersprachen werden aus den verschiedensten Intentionen heraus entwickelt. 
+//Viele neue Programmiersprachen werden als Open-Source entwickelt. 
+Unter den Top5 der mit GitHub verwalteten Programmiersprachen befinden sich mit Swift von Apple und Go von Google zwei Projekte die von den aktuell bedeutensten IT-Firmen entwickelt werden. 
+
+Warum begannen Apple und Google die Neuentwicklung einer Programmiersprache? Welches Ziel wird mit der Neuentwicklung verfolgt? Für welches Einsatzgebiet werden diese neuen Programmiersprachen entwickelt?
+
+#Forschungsfrage
+Im Rahmen dieser Bachelorarbeit soll Swift und Go anhand von definierten Kriterien miteinader verglichen werden. 
+
+#Methode
+Für den Vergleich wurden folgende Kriterien definiert:
+
+- Syntax
+	* Funktionen (Definition und Aufruf)
+	* Variablen (Deklaration und Definition)
+	* Kontrollstrukturen
+	* Blockstrukturen
+	* Operatoren
+- Typsystem
+	* Wie werden Null-Werte behandelt?
+	* Welche Art von Typisierung?
+	* Typinferenz möglich?
+	* Referenz- und Wertegleichheit
+- Fehlerbehandlung
+	* Welche Möglichkeit zur Fehlerbehandlung gibt es?
+	* Gibt es Exceptions?
+- Speicherverwaltung
+	* Garbage Collection
+- Generische Programmierung
+	* Gibt es Generics?
+- Nebenläufigkeit
+	* Welche Möglichkeiten gibt es zur nebenläufigen Programmierung?
+- Objektorientierte Programmierung (Beispiel: Fahrzeuge)
+	* Datenkapselung
+	* Abstraktion
+	* Vererbung, evtl. Mehrfachvererbung
+	* Polymorphismus
+- Funktionale Programmierung (Beispiel: Quicksort)
+	* First-Class Funktionen
+	* High-Order Funktionen
+	* Referenzielle Integrität
+	* Closures/Lambda-Ausdrücke
+- Anwendungsbeispiel: Webanwendung
+	* Benötigte Frameworks
+- Tools/Werkzeuge
+	* Gibt es bereits IDE's?
+	* Frameworks für Softwaretests
+
+#Aufbau/Gliederung
+1. Einleitung
+1.1 Kontext der Arbeit
+1.2 Zielsetzung/Motivation
+1.3 Aufgabenstellung
+1.4 Aufbau der Arbeit
+
+2. Syntax
+3. Typsystem
+4. Fehlerbehandlung
+5. Speicherverwaltung
+6. Generische Programmierung
+7. Nebenläufigkeit
+8. Objektorientierte Programmierung
+9. Funktionale Programmierung
+10. Anwendungsbeispiel: Webanwendung
+11. Tools
+
+12. Zusammenfassung
+13. Ausblick
+
+
+#Zeitplanung
