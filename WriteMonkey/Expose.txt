@@ -2,12 +2,28 @@
 Neben den etablierten Programmiersprachen wie Java, C++/C werden kontinuirlich neue Programmiersprchen entwickelt. 
 //Diese neuen Programmiersprachen werden aus den verschiedensten Intentionen heraus entwickelt. 
 //Viele neue Programmiersprachen werden als Open-Source entwickelt. 
-Unter den Top5 der mit GitHub verwalteten Programmiersprachen befinden sich mit Swift von Apple und Go von Google zwei Projekte die von den aktuell bedeutensten IT-Firmen entwickelt werden. 
+Unter den Top5 der mit GitHub verwalteten Programmiersprachen befinden sich mit Swift von Apple und Go von Google zwei Projekte die von den aktuell bedeutensten IT-Firmen stammen.
 
-Warum begannen Apple und Google die Neuentwicklung einer Programmiersprache? Welches Ziel wird mit der Neuentwicklung verfolgt? Für welches Einsatzgebiet werden diese neuen Programmiersprachen entwickelt?
+//todo:Hier Bild von GitHub einfügen!
+
+Doch warum bedarf es der Entwicklung neuer Programmiersprachen? "Google wollte sich nicht damit zufriedengeben, das die Unterstützung aktueller Trends in der Systemsoftwareentwicklung wie Parallelisierung, Cloud-Computing etc. in den etablierten Hochsprachen nur mehr schlecht als recht ergänzt wurde."(Feike/Blass Programmierung in Google Go)
+
+Was macht Swift interessant?
+"Interessanterweise ist ein nicht unwesentlicher Punkt bei der Beantowrtung dieser Frage die bisherige Sprache der Apple-Plattform: Objective-C."(Popp, Durchstarten mit Swift) 
+
+//Warum begannen Apple und Google die Neuentwicklung einer Programmiersprache? Welches Ziel wird mit der Neuentwicklung verfolgt? Für welches Einsatzgebiet werden diese neuen Programmiersprachen entwickelt?
 
 #Forschungsfrage
-Im Rahmen dieser Bachelorarbeit soll Swift und Go anhand von definierten Kriterien miteinader verglichen werden. 
+Im Rahmen dieser Bachelorarbeit soll Swift und Go anhand von definierten Kriterien verglichen werden. Hierbei stellen sich folgende Kernfragen:
+
+- Ist objektorientierte Programmierung möglich? 
+- Kann funktionale Programmierung eingesetzt werden?
+- Welche Möglichkeiten werden zur Nebenläufigen Programmierung geboten?
+- Kann im konkreten Fall eine Webanwendung implementiert werden? Welche Komponenten/Framworks werden dafür eventuell benötigt?
+
+Gerade in den Punkten objektorientierte Programmierung und funktionale Programmierung stellt sich die Frage, wie sich die Swift und Go zu den bereits etablierten Hochsprachen unterscheiden oder ähneln. 
+
+//Der Vergleich soll zeigen in wie weit sich Swift und Go in den einzelnen Punkten unterscheiden oder sogar ähneln.  
 
 #Methode
 Für den Vergleich wurden folgende Kriterien definiert:
