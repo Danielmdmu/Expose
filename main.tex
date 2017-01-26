@@ -89,6 +89,7 @@ BoldItalicFont=timesbi.ttf
 \input{Verzeichnisse/Abkürzungsverzeichnis.tex}
 \makeglossaries
 
+
 \begin{document}
 
 %===========================================================
@@ -165,7 +166,7 @@ BoldItalicFont=timesbi.ttf
 %<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 \chapter{Motivation und Problemstellung}
-\blindtext
+
 
 \chapter{Forschungsfrage}
 \blindtext
@@ -185,8 +186,9 @@ BoldItalicFont=timesbi.ttf
 %===========================================================
 %== Literaturverzeichnis ===================================
 %===========================================================
-% \bibliography{Literatur/literatur}
-% \bibliographystyle{alphadin}
+\nocite{*}
+\bibliography{Literatur/literatur.bib,Literatur/test.bib,mendeley.bib}
+\bibliographystyle{alphadin}
 
 %===========================================================
 %== Anhang =================================================
