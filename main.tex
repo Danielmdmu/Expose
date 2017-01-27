@@ -10,7 +10,7 @@
     listof=totoc,
     toc=chapterentrywithdots,
     listof=entryprefix,
-]{scrreprt}
+]{scrartcl}
 
 \usepackage[a4paper, left=2.5cm, right=2.5cm, top=1.25cm, bottom=1.25cm, includehead, includefoot]{geometry}
 
@@ -38,6 +38,8 @@
 \usepackage[]{hyperref}
 \usepackage{chngcntr}%% Nummerierung der Abbildungen und Tabellen fortlaufend %%%%%%
 \usepackage{tocbibind}
+\usepackage[style=alphabetic, citestyle=alphabetic]{biblatex}
+\usepackage[babel,german=quotes]{csquotes} % Deutsche
 
 % Paragraph styles
 \setlength{\parindent}{0cm}
@@ -51,7 +53,6 @@
 \fancyhead[L]{\nouppercase{\leftmark}}
 \fancypagestyle{plain}{\pagestyle{fancy}}
 
-
 %-- Standardschriftart auf Times New Roman umstellen
 \setmainfont[ Path = Fonts/,
 BoldFont=timesbd.ttf,
@@ -63,17 +64,17 @@ BoldItalicFont=timesbi.ttf
 \setkomafont{disposition}{\normalcolor\bfseries}
 
 % Entfernt "Kapitel X" aus der Kopfzeile vor der Kapitelüberschrift
-\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}
+%\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}
  
-%Abstände nach Kapiteln 
-\RedeclareSectionCommand[%
-  beforeskip=0pt,
-  afterskip=1\baselineskip plus .1\baselineskip minus .167\baselineskip
-]{chapter}
+% %Abstände nach Kapiteln 
+% \RedeclareSectionCommand[%
+%   beforeskip=0pt,
+%   afterskip=1\baselineskip plus .1\baselineskip minus .167\baselineskip
+% ]{chapter}
 
 %% Nummerierung der Abbildungen und Tabellen fortlaufend %%%%%%
-\counterwithout{figure}{chapter}
-\counterwithout{table}{chapter}
+\counterwithout{figure}{section}
+\counterwithout{table}{section}
 
 %% Rahmen in Textbreite um Bilder
 \floatstyle{boxed}
@@ -87,8 +88,27 @@ BoldItalicFont=timesbi.ttf
 % Einbinden von Glossar u. Abkürzungsverzeichnis
 \input{Verzeichnisse/Glossar.tex}
 \input{Verzeichnisse/Abkürzungsverzeichnis.tex}
-\makeglossaries
+% \makeglossaries
 
+\renewcommand{\labelenumi}{\arabic{enumi}.} 
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
+
+\usepackage{enumitem}
+\setlist[2]{nosep}
+%\setlist[1]{nosep}
+
+\addbibresource{Literatur/literatur.bib}
+\addbibresource{Literatur/internet.bib}
+\addbibresource{mendeley.bib}
+\DeclareFieldFormat{formaturl}{\newline #1}
+\renewbibmacro*{url+urldate}{%
+\printtext[formaturl]{%
+  \printfield{url}}%
+  \iffieldundef{urlyear}
+    {}
+    {\setunit*{\addspace}%
+     \printtext[]{\printurldate}}}
 
 \begin{document}
 
@@ -101,9 +121,10 @@ BoldItalicFont=timesbi.ttf
 %== Inhaltsverzeichnis =====================================
 %===========================================================   
 \begin{singlespace}
-\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} % Punkte im Inhaltsverzeichnis bei Kapiteln
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} % Punkte im Inhaltsverzeichnis bei Kapiteln
 \tableofcontents
 \end{singlespace}
+\newpage
 
 % %===========================================================
 % %== Abbildungsverzeichnis ==================================
@@ -165,24 +186,154 @@ BoldItalicFont=timesbi.ttf
 % Text Einleitung, Hauptteil usw. 
 %<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-\chapter{Motivation und Problemstellung}
-Neben den etablierten Programmiersprachen wie Java, C++/C werden kontinuirlich neue Programmiersprchen entwickelt. 
-Unter den Top5 der mit GitHub verwalteten Programmiersprachen befinden sich mit Swift von Apple und Go von Google zwei Projekte die von den aktuell bedeutensten IT-Firmen stammen.
+\section{Motivation und Problemstellung}
+Neben den etablierten Programmiersprachen wie Java, C/C++ werden kontinuierlich neue Programmiersprachen entwickelt. 
+Unter den Top5 der mit GitHub verwalteten Programmiersprachen befinden sich mit Swift von Apple und Go von Google zwei Projekte die von bedeutenden IT-Firmen stammen.
 
+	\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{Images/github}
+	\caption{Ranking der unter GitHub verwalteten Programmiersprachen Stand: 26.01.2017}%
+	\label{figure:github}%
+	\end{figure}
 
-
-Doch warum bedarf es der Entwicklung neuer Programmiersprachen? "Google wollte sich nicht damit zufriedengeben, das die Unterstützung aktueller Trends in der Systemsoftwareentwicklung wie Parallelisierung, Cloud-Computing etc. in den etablierten Hochsprachen nur mehr schlecht als recht ergänzt wurde."(Feike/Blass Programmierung in Google Go)
+Doch warum bedarf es der Entwicklung neuer Programmiersprachen?
+\begin{quote}
+\enquote{Google wollte sich nicht damit zufriedengeben, das die Unterstützung aktueller Trends in der Systemsoftwareentwicklung wie Parallelisierung, Cloud-Computing etc. in den etablierten Hochsprachen nur mehr schlecht als recht ergänzt wurde.} \cite{Feike2011}
+\end{quote}
 
 Was macht Swift interessant?
-"Interessanterweise ist ein nicht unwesentlicher Punkt bei der Beantowrtung dieser Frage die bisherige Sprache der Apple-Plattform: Objective-C."(Popp, Durchstarten mit Swift) 
+\begin{quote} 
+\enquote{Interessanterweise ist ein nicht unwesentlicher Punkt bei der Beantwortung dieser Frage die bisherige Sprache der Apple-Plattform: Objective-C.} \cite{Popp.2015}
+\end{quote}
 
-\chapter{Forschungsfrage}
-\blindtext
+\section{Forschungsfrage}
+Im Rahmen dieser Bachelorarbeit soll Swift und Go anhand von definierten Kriterien verglichen werden. Hierbei stellen sich folgende Kernfragen:
 
+\begin{samepage}
+\begin{itemize}
+    \item Ist objektorientierte Programmierung möglich? 
+    \item Kann funktionale Programmierung eingesetzt werden?
+    \item Welche Möglichkeiten werden zur Nebenläufigen Programmierung geboten?
+    \item Kann im konkreten Fall eine Webanwendung implementiert werden? Welche Komponenten/Frameworks werden dafür eventuell benötigt?
+\end{itemize}
+\end{samepage}
 
-%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-% Text Einleitung, Hauptteil usw. 
-%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+In den Punkten objektorientierte Programmierung und funktionale Programmierung stellt sich die Frage, wie sich Swift und Go zu den bereits etablierten Hochsprachen unterscheiden oder ähneln. 
+Was machen Swift und Go anders als die etablierten Programmiersprachen?
+
+\section{Methode}
+Swift und Go sollen anhand folgender Kriterien verglichen werden:
+
+\begin{itemize}%[nosep]
+    \item \textbf{Syntax}
+    \begin{itemize}
+        \item Funktionen (Definition und Aufruf)
+        \item Variablen (Deklaration und Definition)
+        \item Kontrollstrukturen
+        \item Blockstrukturen
+        \item Operatoren
+    \end{itemize}
+    \item \textbf{Typsystem}
+    \begin{itemize}
+        \item Wie werden Null-Werte behandelt?
+        \item Welche Art von Typisierung?
+        \item Typinferenz möglich?
+        \item Referenz- und Wertegleichheit
+    \end{itemize}
+    \item \textbf{Fehlerbehandlung}
+    \begin{itemize}
+        \item Welche Möglichkeit zur Fehlerbehandlung gibt es?
+        \item Gibt es Exceptions?
+    \end{itemize}
+    \item \textbf{Speicherverwaltung}
+    \begin{itemize}
+        \item Garbage Collection
+    \end{itemize}
+    \begin{samepage}
+    \item \textbf{Generische Programmierung}
+    \begin{itemize}
+        \item Gibt es Generics?
+    \end{itemize}
+    \end{samepage}
+    \item \textbf{Nebenläufigkeit}
+    \begin{itemize}
+      \item Welche Möglichkeiten gibt es zur nebenläufigen Programmierung?  
+    \end{itemize}
+    \item \textbf{Objektorientierte Programmierung}
+    \begin{itemize}
+        \item Datenkapselung
+        \item Abstraktion
+        \item Vererbung, evtl. Mehrfachvererbung
+        \item Polymorphismus
+    \end{itemize}
+    \item \textbf{Funktionale Programmierung}
+    \begin{itemize}
+      \item First-Class Funktionen
+      \item High-Order Funktionen
+      \item Referenzielle Integrität
+      \item Closures/Lambda-Ausdrücke
+    \end{itemize}
+  \item \textbf{Anwendungsbeispiel: Webanwendung}
+  \begin{itemize}
+    \item Benötigte Frameworks
+  \end{itemize}
+  \item \textbf{Tools/Werkzeuge}
+  \begin{itemize}
+    \item Gibt es bereits IDE's?
+    \item Frameworks für Softwaretests
+  \end{itemize}
+\end{itemize}
+
+Soweit möglich, soll jedes Kriterium anhand eines aussagekräftigen Beispiels veranschaulicht werden. 
+
+\section{Gliederung}
+
+\begin{samepage}
+\begin{enumerate}
+    \item \textbf{Einleitung}
+    \begin{enumerate}
+        \item Kontext der Arbeit
+        \item Zielsetzung/Motivation
+        \item Aufgabenstellung
+        \item Aufbau der Arbeit
+    \end{enumerate}
+    \item \textbf{Syntax}
+    \item \textbf{Typsystem}
+    \item \textbf{Fehlerbehandlung}
+    \item \textbf{Speicherverwaltung}
+    \item \textbf{Generische Programmierung}
+    \item \textbf{Nebenläufigkeit}
+    \item \textbf{Objektorientierte Programmierung}
+    \item \textbf{Funktionale Programmierung}
+    \item \textbf{Anwendungsbeispiel: Webanwendung}
+    \item \textbf{Tools}
+    \item \textbf{Zusammenfassung}
+    \item \textbf{Ausblick}
+\end{enumerate}
+\end{samepage}
+
+\section{Zeitplan}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|} 
+ \hline
+ \rowcolor[gray]{0.75} \textbf{Zeitraum} & \textbf{Aufgabe} \\
+ \hline
+ Februar 2017 & Syntax, Typsystem, Fehlerbehandlung... \\ 
+ \hline 
+ März 2017 & Objektorientierte Programmierung, Funktionale Programmierung \\
+ \hline 
+ April 2017 & Generische Programmierung, Nebenläufigkeit, Speichervewaltung \\
+ \hline
+ Mai 2017 & Anwendungsbeispiel, Tools, Einleitung u. Zusammenfassung \\
+ \hline
+\end{tabular}
+\caption{Zeitplan}
+\label{table:zeitplan}
+\end{table}
+
 % %===========================================================
 % %== Glossar ================================================
 % %===========================================================
@@ -194,9 +345,12 @@ Was macht Swift interessant?
 %===========================================================
 %== Literaturverzeichnis ===================================
 %===========================================================
+\newpage
 \nocite{*}
-\bibliography{Literatur/literatur.bib,Literatur/test.bib,mendeley.bib}
-\bibliographystyle{alphadin}
+% \bibliography{Literatur/literatur.bib,Literatur/test.bib,mendeley.bib}
+% \bibliographystyle{alphadin}
+
+\printbibliography[heading=bibintoc,title={Literaturverzeichnis}]
 
 %===========================================================
 %== Anhang =================================================
